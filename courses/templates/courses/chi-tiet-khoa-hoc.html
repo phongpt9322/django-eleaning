@@ -1,0 +1,315 @@
+{% extends "courses/base.html" %}
+{% load static %}
+{% block title %}CHI TIẾT KHOÁ HỌC{% endblock title %}
+{% block content %}
+        <!-- Page Banner Start -->
+        <div class="section page-banner">
+
+            <img class="shape-1 animation-round" src="{% static 'courses' %}/images/shape/shape-8.png" alt="Shape">
+
+            <img class="shape-2" src="{% static 'courses' %}/images/shape/shape-23.png" alt="Shape">
+
+            <div class="container">
+                <!-- Page Banner Start -->
+                <div class="page-banner-content">
+                    <ul class="breadcrumb">
+                        <li><a href="{% url 'courses:index' %}">TRANG CHỦ</a></li>
+                        <li class="active">{{ course_select.subject.title }}</li>
+                    </ul>
+                    <h2 class="title"><span>{{ course_select.title }}</span></h2>
+                </div>
+                <!-- Page Banner End -->
+            </div>
+
+            <!-- Shape Icon Box Start -->
+            <div class="shape-icon-box">
+
+                <img class="icon-shape-1 animation-left" src="{% static 'courses' %}/images/shape/shape-5.png" alt="Shape">
+
+                <div class="box-content">
+                    <div class="box-wrapper">
+                        <i class="flaticon-badge"></i>
+                    </div>
+                </div>
+
+                <img class="icon-shape-2" src="{% static 'courses' %}/images/shape/shape-6.png" alt="Shape">
+
+            </div>
+            <!-- Shape Icon Box End -->
+
+            <img class="shape-3" src="{% static 'courses' %}/images/shape/shape-24.png" alt="Shape">
+
+            <img class="shape-author" src="{% static 'courses' %}/images/author/author-11.jpg" alt="Shape">
+
+        </div>
+        <!-- Page Banner End -->
+
+        <!-- Courses Start -->
+        <div class="section section-padding mt-n10">
+            <div class="container">
+                <div class="row gx-10">
+                    <div class="col-lg-8">
+
+                        <!-- Courses Details Start -->
+                        <div class="courses-details">
+
+                            <div class="courses-details-images center">
+                                <img src="/media/{{ course_select.image }}" alt="Courses Details">
+                                <span class="tags">{{ course_select.subject.title }}</span>
+
+                                {% comment %} <div class="courses-play">
+                                    <img src="{% static 'courses' %}/images/courses/circle-shape.png" alt="Play">
+                                    <a class="play video-popup" href="https://www.youtube.com/watch?v=Wif4ZkwC0AM"><i class="flaticon-play"></i></a>
+                                </div> {% endcomment %}
+                            </div>
+
+                            <h2 class="title">{{ course_select.title }}</h2>
+
+                            <!-- Courses Details Tab Start -->
+                            <div class="courses-details-tab">
+
+                                <!-- Details Tab Menu Start -->
+                                <div class="details-tab-menu">
+                                    <ul class="nav justify-content-center">
+                                        <li><button class="active" data-bs-toggle="tab" data-bs-target="#description">Thông tin</button></li>
+                                        <li><button data-bs-toggle="tab" data-bs-target="#instructors">Nội dung</button></li>
+                                        <li><button data-bs-toggle="tab" data-bs-target="#reviews">Đánh giá</button></li>
+                                    </ul>
+                                </div>
+                                <!-- Details Tab Menu End -->
+
+                                <!-- Details Tab Content Start -->
+                                <div class="details-tab-content">
+                                    <div class="tab-content">
+                                        <div class="tab-pane fade show active" id="description">
+
+                                            <!-- Tab Description Start -->
+                                            <div class="tab-description">
+                                                <div class="description-wrapper">
+                                                    <h3 class="tab-title">Thông tin khoá học:</h3>
+                                                    {{ course_select.overview|safe }}
+                                                </div>
+                                            </div>
+                                            <!-- Tab Description End -->
+
+                                        </div>
+                                        <div class="tab-pane fade" id="instructors">
+
+                                            <!-- Tab Instructors Start -->
+                                            <div class="tab-instructors">
+                                                <h3 class="tab-title">Nội dung:</h3>
+
+                                                <div class="row gx-10">
+                                                    <div class="col-lg-12">
+                                                        <div class="tab-rating-content">
+                                                            {{ course_select.content|safe }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Tab Instructors End -->
+
+                                        </div>
+                                        <div class="tab-pane fade" id="reviews">
+
+                                            <!-- Tab Reviews Start -->
+                                            <div class="tab-reviews">
+                                                <h3 class="tab-title">Đánh giá của học viên:</h3>
+
+                                                <div class="reviews-wrapper reviews-active">
+                                                    <div class="swiper-container">
+                                                        <div class="swiper-wrapper">
+
+                                                            <!-- Single Reviews Start -->
+                                                            <div class="single-review swiper-slide">
+                                                                <div class="review-author">
+                                                                    <div class="author-thumb">
+                                                                        <img src="{% static 'courses' %}/images/author/author-06.jpg" alt="Author">
+                                                                        <i class="icofont-quote-left"></i>
+                                                                    </div>
+                                                                    <div class="author-content">
+                                                                        <h4 class="name">Sara Alexander</h4>
+                                                                        <span class="designation">Product Designer, USA</span>
+                                                                        <span class="rating-star">
+																				<span class="rating-bar" style="width: 100%;"></span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                                <p>Lorem Ipsum has been the industry's standard dummy text since the 1500 when unknown printer took a galley of type and scrambled to make type specimen book has survived not five centuries but also the leap into electronic type and book.</p>
+                                                            </div>
+                                                            <!-- Single Reviews End -->
+
+                                                            <!-- Single Reviews Start -->
+                                                            <div class="single-review swiper-slide">
+                                                                <div class="review-author">
+                                                                    <div class="author-thumb">
+                                                                        <img src="{% static 'courses' %}/images/author/author-07.jpg" alt="Author">
+                                                                        <i class="icofont-quote-left"></i>
+                                                                    </div>
+                                                                    <div class="author-content">
+                                                                        <h4 class="name">Karol Bachman</h4>
+                                                                        <span class="designation">Product Designer, USA</span>
+                                                                        <span class="rating-star">
+																				<span class="rating-bar" style="width: 100%;"></span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                                <p>Lorem Ipsum has been the industry's standard dummy text since the 1500 when unknown printer took a galley of type and scrambled to make type specimen book has survived not five centuries but also the leap into electronic type and book.</p>
+                                                            </div>
+                                                            <!-- Single Reviews End -->
+
+                                                            <!-- Single Reviews Start -->
+                                                            <div class="single-review swiper-slide">
+                                                                <div class="review-author">
+                                                                    <div class="author-thumb">
+                                                                        <img src="{% static 'courses' %}/images/author/author-03.jpg" alt="Author">
+                                                                        <i class="icofont-quote-left"></i>
+                                                                    </div>
+                                                                    <div class="author-content">
+                                                                        <h4 class="name">Gertude Culbertson</h4>
+                                                                        <span class="designation">Product Designer, USA</span>
+                                                                        <span class="rating-star">
+																				<span class="rating-bar" style="width: 100%;"></span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                                <p>Lorem Ipsum has been the industry's standard dummy text since the 1500 when unknown printer took a galley of type and scrambled to make type specimen book has survived not five centuries but also the leap into electronic type and book.</p>
+                                                            </div>
+                                                            <!-- Single Reviews End -->
+
+                                                        </div>
+                                                        <!-- Add Pagination -->
+                                                        <div class="swiper-pagination"></div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="reviews-btn">
+                                                    <button type="button" class="btn btn-primary btn-hover-dark" data-bs-toggle="modal" data-bs-target="#reviewsModal">Write A Review</button>
+                                                </div>
+
+                                                <!-- Reviews Form Modal Start -->
+                                                <div class="modal fade" id="reviewsModal">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title">Add a Review</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+
+                                                            <!-- Reviews Form Start -->
+                                                            <div class="modal-body reviews-form">
+                                                                <form action="#">
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <!-- Single Form Start -->
+                                                                            <div class="single-form">
+                                                                                <input type="text" placeholder="Enter your name">
+                                                                            </div>
+                                                                            <!-- Single Form End -->
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <!-- Single Form Start -->
+                                                                            <div class="single-form">
+                                                                                <input type="text" placeholder="Enter your Email">
+                                                                            </div>
+                                                                            <!-- Single Form End -->
+                                                                        </div>
+                                                                        <div class="col-md-12">
+                                                                            <!-- Single Form Start -->
+                                                                            <div class="reviews-rating">
+                                                                                <label>Rating</label>
+                                                                                <ul id="rating" class="rating">
+                                                                                    <li class="star" title='Poor' data-value='1'><i class="icofont-star"></i></li>
+                                                                                    <li class="star" title='Poor' data-value='2'><i class="icofont-star"></i></li>
+                                                                                    <li class="star" title='Poor' data-value='3'><i class="icofont-star"></i></li>
+                                                                                    <li class="star" title='Poor' data-value='4'><i class="icofont-star"></i></li>
+                                                                                    <li class="star" title='Poor' data-value='5'><i class="icofont-star"></i></li>
+                                                                                </ul>
+                                                                            </div>
+                                                                            <!-- Single Form End -->
+                                                                        </div>
+                                                                        <div class="col-md-12">
+                                                                            <!-- Single Form Start -->
+                                                                            <div class="single-form">
+                                                                                <textarea placeholder="Write your comments here"></textarea>
+                                                                            </div>
+                                                                            <!-- Single Form End -->
+                                                                        </div>
+                                                                        <div class="col-md-12">
+                                                                            <!-- Single Form Start -->
+                                                                            <div class="single-form">
+                                                                                <button class="btn btn-primary btn-hover-dark">Submit Review</button>
+                                                                            </div>
+                                                                            <!-- Single Form End -->
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                            <!-- Reviews Form End -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Reviews Form Modal End -->
+
+                                            </div>
+                                            <!-- Tab Reviews End -->
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Details Tab Content End -->
+
+                            </div>
+                            <!-- Courses Details Tab End -->
+
+                        </div>
+                        <!-- Courses Details End -->
+
+                    </div>
+                    <div class="col-lg-4">
+                        <!-- Courses Details Sidebar Start -->
+                        <div class="sidebar">
+
+                            <!-- Sidebar Widget Information Start -->
+                            <div class="sidebar-widget widget-information">
+                                <div class="info-price">
+                                    <span class="price">{% load humanize %}{{course_select.tuitionfee|floatformat:0|intcomma}} VNĐ</span>
+                                </div>
+                                <div class="info-list">
+                                    <ul>
+                                        <li><i class="icofont-man-in-glasses"></i> <strong>Giáo viên:</strong> <span>Trung tâm nhật ngữ</span></li>
+                                        <li><i class="icofont-clock-time"></i> <strong>Thời lượng</strong> <span>~ 30 phút/video</span></li>
+                                        <li><i class="icofont-ui-video-play"></i> <strong>Video bài học</strong> <span>{{ course_select.duration }}</span></li>
+                                        <li><i class="icofont-bars"></i> <strong>Chủ đề</strong> <span>{{ course_select.subject }}</span></li>
+                                        {% comment %} <li><i class="icofont-book-alt"></i> <strong>Language</strong> <span>English</span></li>
+                                        <li><i class="icofont-certificate-alt-1"></i> <strong>Certificate</strong> <span>Yes</span></li> {% endcomment %}
+                                    </ul>
+                                </div>
+                                <div class="info-btn">
+                                    <a href="{% url 'courses:lich-khai-giang' course_select.slug %}" class="btn btn-primary btn-hover-dark">ĐĂNG KÝ NGAY</a>
+                                </div>
+                            </div>
+                            <!-- Sidebar Widget Information End -->
+
+                            <!-- Sidebar Widget Share Start -->
+                            <div class="sidebar-widget">
+                                <h4 class="widget-title">Chia sẻ khoá học:</h4>
+
+                                <ul class="social">
+                                    <li><a href="#"><i class="flaticon-facebook"></i></a></li>
+                                    <li><a href="#"><i class="flaticon-linkedin"></i></a></li>
+                                    <li><a href="#"><i class="flaticon-twitter"></i></a></li>
+                                    <li><a href="#"><i class="flaticon-skype"></i></a></li>
+                                    <li><a href="#"><i class="flaticon-instagram"></i></a></li>
+                                </ul>
+                            </div>
+                            <!-- Sidebar Widget Share End -->
+
+                        </div>
+                        <!-- Courses Details Sidebar End -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Courses End -->
+{% endblock %}

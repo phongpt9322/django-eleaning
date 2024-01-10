@@ -1,0 +1,139 @@
+{% extends "courses/base.html" %}
+{% load static %}
+{% block title %}TÀI KHOẢN{% endblock title %}
+{% block content %}
+        <!-- Page Banner Start -->
+        <div class="section page-banner">
+
+            <img class="shape-1 animation-round" src="{% static 'courses' %}/images/shape/shape-8.png" alt="Shape">
+
+            <img class="shape-2" src="{% static 'courses' %}/images/shape/shape-23.png" alt="Shape">
+
+            <div class="container">
+                <!-- Page Banner Start -->
+                <div class="page-banner-content">
+                    <ul class="breadcrumb">
+                        <li><a href="{% url 'courses:index' %}">TRANG CHỦ</a></li>
+                        <li class="active">ĐĂNG NHẬP</li>
+                    </ul>
+                </div>
+                <!-- Page Banner End -->
+            </div>
+
+            <!-- Shape Icon Box Start -->
+            <div class="shape-icon-box">
+
+                <img class="icon-shape-1 animation-left" src="{% static 'courses' %}/images/shape/shape-5.png" alt="Shape">
+
+                <div class="box-content">
+                    <div class="box-wrapper">
+                        <i class="flaticon-badge"></i>
+                    </div>
+                </div>
+
+                <img class="icon-shape-2" src="{% static 'courses' %}/images/shape/shape-6.png" alt="Shape">
+
+            </div>
+            <!-- Shape Icon Box End -->
+
+            <img class="shape-3" src="{% static 'courses' %}/images/shape/shape-24.png" alt="Shape">
+
+            <img class="shape-author" src="{% static 'courses' %}/images/author/author-11.jpg" alt="Shape">
+
+        </div>
+        <!-- Page Banner End -->
+
+         <!-- Blog Details Start -->
+        <div class="section section-padding mt-n10">
+            <div class="container">
+                <div class="row flex-row-reverse gx-10">
+                    <div class="col-lg-9">
+                    <div class="sidebar">
+                    <!-- Sidebar Widget Category Start -->
+                    <div class="sidebar-widget">
+                        <!-- All Courses tab content Start -->
+                        <center><h3 class="title"><span>CÁC LỚP HỌC ĐÃ ĐĂNG KÝ</span></h3></center>
+                        {% if customer_item %}
+                            <div class="row">
+                                <table class="table caption-top">
+                                    <thead>
+                                        <tr>
+                                        <th scope="col">LỚP HỌC</th>
+                                        <th scope="col">NGÀY ĐĂNG KÝ</th>
+                                        <th scope="col">NGÀY KHAI GIẢNG</th>
+                                        <th scope="col">NGÀY HỌC</th>
+                                        <th scope="col">ĐÓNG TIỀN</th>
+                                        <th scope="col">HUỶ</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for class in customer_item %}
+                                                {% comment %} {% if cancel.reg_class == class.reg_class and cancel_qs.status != True %} {% endcomment %}
+                                                <tr>
+                                                    <th scope="row">{{ class.reg_class }}</th>
+                                                    <td>{{ class.created|date:"d-m-Y" }}</td>
+                                                    <td>{{ class.reg_class.schedule|date:"d-m-Y" }}</td>
+                                                    <td>{{ class.reg_class.startdate }}</td>
+                                                    <td>
+                                                        {% if class.status == True %}
+                                                            <center><img width="25" height="25" src="/media/courses/yes.png"></center>
+                                                        {% else %}
+                                                            <center><img width="25" height="25" src="/media/courses/no.png"></center>
+                                                        {% endif %}
+                                                    </td>
+                                                    <td>
+                                                    {% for cancel in cancel_qs %}
+                                                        {% if now < class.reg_class.schedule %}
+                                                            {% if cancel.reg_class == class.reg_class and cancel_qs.status != True %}
+                                                                {% if cancel.status == True %}
+                                                                    <center><img width="25" height="25" src="/media/courses/yes.png"></center>
+                                                                {% else %}
+                                                                    <center><img width="25" height="25" src="/media/courses/no.png"></center>
+                                                                {% endif %}
+                                                            {% else %}
+                                                                <p><a href="{% url 'courses:huy-dang-ky' class.reg_class.slug %}" class="btn btn-primary btn-hover-dark w-100 btndk">Huỷ</a><p>
+                                                            {% endif %}
+                                                        {% else %}
+                                                            <p><a href="{% url 'courses:huy-dang-ky' class.reg_class.slug %}" class="btn btn-primary btn-hover-dark w-100 btndk disabled">Huỷ</a></p>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                    </td>
+                                                </tr>
+                                                {% comment %} {% endif %} {% endcomment %}
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        {% endif %}
+                        <!-- All Courses tab content End -->
+                    </div></div></div>
+
+                    <div class="col-lg-3">
+
+                        <!-- Blog Sidebar Start -->
+                        <div class="sidebar">
+
+                            <!-- Sidebar Widget Category Start -->
+                            <div class="sidebar-widget">
+                                <h4 class="widget-title">Tài Khoản</h4>
+
+                                <div class="widget-category">
+                                    <ul class="category-list">
+                                        <li><a href="{% url 'courses:tai-khoan' %}">Thông tin tài khoản</a></li>
+                                        <li><a href="{% url 'courses:lop-hoc-cua-toi' %}">Lớp học của tôi</a></li>
+                                        <li><a href="{% url 'courses:dang-xuat' %}">Đăng xuất</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Sidebar Widget Category End -->
+
+                        </div>
+                        <!-- Blog Sidebar End -->
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Blog Details End -->
+{% endblock %}

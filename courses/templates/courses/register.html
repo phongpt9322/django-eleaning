@@ -1,0 +1,165 @@
+{% extends "courses/base.html" %}
+{% load static %}
+{% block title %}ĐĂNG KÝ{% endblock title %}
+{% block content %}
+        <!-- Page Banner Start -->
+        <div class="section page-banner">
+
+            <img class="shape-1 animation-round" src="{% static 'courses' %}/images/shape/shape-8.png" alt="Shape">
+
+            <img class="shape-2" src="{% static 'courses' %}/images/shape/shape-23.png" alt="Shape">
+
+            <div class="container">
+                <!-- Page Banner Start -->
+                <div class="page-banner-content">
+                    <ul class="breadcrumb">
+                        <li><a href="{% url 'courses:index' %}">TRANG CHỦ</a></li>
+                        <li class="active">ĐĂNG KÝ</li>
+                    </ul>
+                </div>
+                <!-- Page Banner End -->
+            </div>
+
+            <!-- Shape Icon Box Start -->
+            <div class="shape-icon-box">
+
+                <img class="icon-shape-1 animation-left" src="{% static 'courses' %}/images/shape/shape-5.png" alt="Shape">
+
+                <div class="box-content">
+                    <div class="box-wrapper">
+                        <i class="flaticon-badge"></i>
+                    </div>
+                </div>
+
+                <img class="icon-shape-2" src="{% static 'courses' %}/images/shape/shape-6.png" alt="Shape">
+
+            </div>
+            <!-- Shape Icon Box End -->
+
+            <img class="shape-3" src="{% static 'courses' %}/images/shape/shape-24.png" alt="Shape">
+
+            <img class="shape-author" src="{% static 'courses' %}/images/author/author-11.jpg" alt="Shape">
+
+        </div>
+        <!-- Page Banner End -->
+
+        <!-- Register & Login Start -->
+        <div class="section section-padding">
+            <div class="container">
+
+                <!-- Register & Login Wrapper Start -->
+                <div class="register-login-wrapper">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6">
+
+                            <!-- Register & Login Images Start -->
+                            <div class="register-login-images">
+                                <div class="shape-1">
+                                    <img src="{% static 'courses' %}/images/shape/shape-26.png" alt="Shape">
+                                </div>
+
+
+                                <div class="images">
+                                    <img src="{% static 'courses' %}/images/register-login.png" alt="Register Login">
+                                </div>
+                            </div>
+                            <!-- Register & Login Images End -->
+
+                        </div>
+                        <div class="col-lg-6">
+
+                            <!-- Register & Login Form Start -->
+                            <div class="register-login-form">
+                                <center><h3 class="title">ĐĂNG KÝ LỚP</br><span>{{ class_select }}</span></h3></center>
+
+                                <div class="form-wrapper">
+                                    {% if students < class_select.students %}
+                                        <form class="form" method="POST" action="{% url 'courses:dang-ky' class_select.slug %}">
+                                            <!-- Single Form Start -->
+                                            <div class="single-form">
+                                                <input type="text" hidden value="{{ class_select.title }}" name="reg_class">
+                                            </div>
+                                            <!-- Single Form End -->
+                                            <!-- Single Form Start -->
+                                            {% if not username %}
+                                                {% if result %} 
+                                                    <center><h4 class="title" style="color: #309255;">{{result|safe}}</h4></center>
+                                                {% else %}
+                                                    <div class="single-form">
+                                                        <label>Tên đăng nhập <span>*</span></label>
+                                                        {{form_customer.username}}
+                                                        {% comment %} <input type="text" placeholder="Họ và Tên"> {% endcomment %}
+                                                    </div>
+                                                    <!-- Single Form End -->
+                                                    <!-- Single Form Start -->
+                                                    <div class="single-form">
+                                                        <label>Mật khẩu <span>*</span></label>
+                                                        {{form_customer.password}}
+                                                        {% comment %} <input type="text" placeholder="Họ và Tên"> {% endcomment %}
+                                                    </div>
+                                                    <!-- Single Form End -->
+                                                    <!-- Single Form Start -->
+                                                    <div class="single-form">
+                                                        <label>Xác nhận lại mật khẩu <span>*</span></label>
+                                                        {{form_customer.confirm}}
+                                                        {% comment %} <input type="text" placeholder="Họ và Tên"> {% endcomment %}
+                                                    </div>
+                                                    <!-- Single Form End -->
+                                                    <!-- Single Form Start -->
+                                                    <div class="single-form">
+                                                        <label>Email <span>*</span></label>
+                                                        {{form_customer.email}}
+                                                        {% comment %} <input type="password" placeholder="Mật khẩu"> {% endcomment %}
+                                                    </div>
+                                                    <!-- Single Form End -->
+                                                    <!-- Single Form Start -->
+                                                    <div class="single-form">
+                                                        <label>Họ và Tên <span>*</span></label>
+                                                        {{form_customer.fullname}}
+                                                        {% comment %} <input type="text" placeholder="Họ và Tên"> {% endcomment %}
+                                                    </div>
+                                                    <!-- Single Form End -->
+                                                    <!-- Single Form Start -->
+                                                    <div class="single-form">
+                                                        <label>Điện thoại <span>*</span></label>
+                                                        {{form_customer.phone}}
+                                                        {% comment %} <input type="email" placeholder="Email"> {% endcomment %}
+                                                    </div>
+                                                    <!-- Single Form End -->
+                                                    <!-- Single Form Start -->
+                                                    <div class="single-form">
+                                                        <label>Địa chỉ</label>
+                                                        {{form_customer.address}}
+                                                        {% comment %} <input type="password" placeholder="Nhập lại mật khẩu"> {% endcomment %}
+                                                    </div>
+                                                    <!-- Single Form End -->
+                                                    <!-- Single Form Start -->
+                                                    <div class="single-form">
+                                                    {% csrf_token %}
+                                                            <button type="submit" class="btn btn-primary btn-hover-dark w-100">ĐĂNG KÝ</button>
+                                                    </div>
+                                                    <!-- Single Form End -->
+                                                {% endif %}
+                                            {% else %}
+                                                <div class="single-form">
+                                                <center><h4 class="title" style="color: #309255;">{% if result %} {{result|safe}} {% endif %}</h4></center>
+                                                </div>
+                                            {% endif %}
+                                        </form>
+                                    {% else %}
+                                        <center><h5 style="color: #309255;">Hiện lớp này đã đủ số lượng học viên!<br> Vui lòng đăng ký khoá học khác hoặc liên hệ trung tâm để biết thêm chi tiết.<br> Xin cám ơn !!!</h5></center>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <!-- Register & Login Form End -->
+
+                        </div>
+                    </div>
+                </div>
+                <!-- Register & Login Wrapper End -->
+
+            </div>
+        </div>
+        <!-- Register & Login End -->
+
+{% endblock %}

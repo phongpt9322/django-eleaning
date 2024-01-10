@@ -1,0 +1,111 @@
+{% extends "courses/base.html" %}
+{% load static %}
+{% block title %}TÀI KHOẢN{% endblock title %}
+{% block content %}
+        <!-- Page Banner Start -->
+        <div class="section page-banner">
+
+            <img class="shape-1 animation-round" src="{% static 'courses' %}/images/shape/shape-8.png" alt="Shape">
+
+            <img class="shape-2" src="{% static 'courses' %}/images/shape/shape-23.png" alt="Shape">
+
+            <div class="container">
+                <!-- Page Banner Start -->
+                <div class="page-banner-content">
+                    <ul class="breadcrumb">
+                        <li><a href="{% url 'courses:index' %}">TRANG CHỦ</a></li>
+                        <li class="active">ĐĂNG NHẬP</li>
+                    </ul>
+                </div>
+                <!-- Page Banner End -->
+            </div>
+
+            <!-- Shape Icon Box Start -->
+            <div class="shape-icon-box">
+
+                <img class="icon-shape-1 animation-left" src="{% static 'courses' %}/images/shape/shape-5.png" alt="Shape">
+
+                <div class="box-content">
+                    <div class="box-wrapper">
+                        <i class="flaticon-badge"></i>
+                    </div>
+                </div>
+
+                <img class="icon-shape-2" src="{% static 'courses' %}/images/shape/shape-6.png" alt="Shape">
+
+            </div>
+            <!-- Shape Icon Box End -->
+
+            <img class="shape-3" src="{% static 'courses' %}/images/shape/shape-24.png" alt="Shape">
+
+            <img class="shape-author" src="{% static 'courses' %}/images/author/author-11.jpg" alt="Shape">
+
+        </div>
+        <!-- Page Banner End -->
+
+         <!-- Blog Details Start -->
+        <div class="section section-padding mt-n10">
+            <div class="container">
+                <div class="row flex-row-reverse gx-10">
+                    <div class="col-lg-9">
+                    <div class="sidebar">
+                    <!-- Sidebar Widget Category Start -->
+                    <div class="sidebar-widget">
+                         <!-- Register & Login Form Start -->
+
+                            <div class="sidebar-widget">
+                                <form class="form" method="POST" action="{% url 'courses:huy-dang-ky' class_select.slug %}">
+                                <h4 class="widget-title"><center><h3 class="title">HUỶ ĐĂNG KÝ LỚP</br><span>{{ class_select }}</span></h3></center></h4>
+
+                                <div class="widget-category">
+                                    <ul class="category-list">
+                                        <li>
+                                            <label>Lý do huỷ <span>*</span></label>
+                                        </li>
+                                        <li>
+                                            <div class="single-form">
+                                                {{form_cancel.reason}}
+                                            </div>
+                                        </li>
+                                        <li>
+                                            {% csrf_token %}
+                                            <center><button type="submit" class="btn btn-primary btn-hover-dark w-100px">HUỶ ĐĂNG KÝ</button></center>
+                                        </li>
+                                        <li>
+                                            <center><h4 class="title" style="color: #309255;">{% if result %} {{result|safe}} {% endif %}</h4></center>
+                                        </li>
+                                    </ul>
+                                </div>
+                                </form>
+                            </div>
+                    </div></div></div>
+
+                    <div class="col-lg-3">
+
+                        <!-- Blog Sidebar Start -->
+                        <div class="sidebar">
+
+                            <!-- Sidebar Widget Category Start -->
+                            <div class="sidebar-widget">
+                                <h4 class="widget-title">Tài Khoản</h4>
+
+                                <div class="widget-category">
+                                    <ul class="category-list">
+                                        <li><a href="{% url 'courses:tai-khoan' %}">Thông tin tài khoản</a></li>
+                                        <li><a href="{% url 'courses:lop-hoc-cua-toi' %}">Lớp học của tôi</a></li>
+                                        <li><a href="{% url 'courses:dang-xuat' %}">Đăng xuất</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Sidebar Widget Category End -->
+
+                        </div>
+                        <!-- Blog Sidebar End -->
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Blog Details End -->
+{% endblock %}

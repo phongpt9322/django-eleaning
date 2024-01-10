@@ -1,0 +1,155 @@
+{% extends "courses/base.html" %}
+{% load static %}
+{% block title %}ELEARNING{% endblock title %}
+{% block content %}
+        <!-- Slider Start -->
+        <div class="section slider-section">
+
+            <!-- Slider Shape Start -->
+            <div class="slider-shape">
+                <img class="shape-1 animation-round" src="{% static 'courses' %}/images/shape/shape-8.png" alt="Shape">
+            </div>
+            <!-- Slider Shape End -->
+
+            <div class="container">
+
+                <!-- Slider Content Start -->
+                <div class="slider-content">
+                    <h4 class="sub-title">Hãy bắt đầu khoá học yêu thích</h4>
+                    <h2 class="main-title">Học ngay với bất kỳ địa điểm, và xây dựng <span>Tương lai tươi sáng.</span></h2>
+                    <p>Học trên nhiều thiết bị với hệ thống video bài giảng phong phú</p>
+                    <a class="btn btn-primary btn-hover-dark" href="{% url 'courses:lich-khai-giang' %}">ĐĂNG KÝ NGAY</a>
+                </div>
+                <!-- Slider Content End -->
+
+            </div>
+
+            <!-- Slider Courses Box Start -->
+            <div class="slider-courses-box">
+
+                <img class="shape-1 animation-left" src="{% static 'courses' %}/images/shape/shape-5.png" alt="Shape">
+
+                <div class="box-content">
+                    <div class="box-wrapper">
+                        <i class="flaticon-open-book"></i>
+                        <span class="count">{{ total_course }}</span>
+                        <p>Khoá học</p>
+                    </div>
+                </div>
+
+                <img class="shape-2" src="{% static 'courses' %}/images/shape/shape-6.png" alt="Shape">
+
+            </div>
+            <!-- Slider Courses Box End -->
+
+            <!-- Slider Rating Box Start -->
+            <div class="slider-rating-box">
+
+                <div class="box-rating">
+                    <div class="box-wrapper">
+                        <span class="count">4.8 <i class="flaticon-star"></i></span>
+                    </div>
+                </div>
+
+                <img class="shape animation-up" src="{% static 'courses' %}/images/shape/shape-7.png" alt="Shape">
+
+            </div>
+            <!-- Slider Rating Box End -->
+
+            <!-- Slider Images Start -->
+            <div class="slider-images">
+                <div class="images">
+                    <img src="{% static 'courses' %}/images/slider/slider-1.png" alt="Slider">
+                </div>
+            </div>
+            <!-- Slider Images End -->
+
+            <!-- Slider Video Start -->
+            <div class="slider-video">
+                <img class="shape-1" src="{% static 'courses' %}/images/shape/shape-9.png" alt="Shape">
+
+                <div class="video-play">
+                    <img src="{% static 'courses' %}/images/shape/shape-10.png" alt="Shape">
+                    <a href="https://www.youtube.com/watch?v=BRvyWfuxGuU" class="play video-popup"><i class="flaticon-play"></i></a>
+                </div>
+            </div>
+            <!-- Slider Video End -->
+
+        </div>
+        <!-- Slider End -->
+        <!-- All Courses Start -->
+        <div class="section section-padding-02">
+            <div class="container">
+
+                <!-- All Courses Top Start -->
+                <div class="courses-top">
+
+                    <!-- Section Title Start -->
+                    <div class="section-title shape-01">
+                        <h2 class="main-title">Tất cả <span>KHOÁ HỌC</span> của trung tâm</h2>
+                    </div>
+                    <!-- Section Title End -->
+
+                    <!-- Courses Search Start -->
+                    <div class="courses-search">
+                        <form action="{% url 'courses:search' %}" method="GET" name="search_form">
+                            <input type="search" name="title" placeholder="Nhập khoá học cần tìm" value="{{search_str}}">
+                            <button><i class="flaticon-magnifying-glass"></i></button>
+                        </form>
+                    </div>
+                    <!-- Courses Search End -->
+
+                </div>
+                <!-- All Courses Top End -->
+
+                <!-- All Courses tab content Start -->
+                {% for subject in subjects %}
+                <div class="courses-wrapper">
+                    <div class="row">
+                    {% for course in courses %}
+                        {% if course.subject.id == subject.id %}  
+                            <div class="col-lg-4 col-md-6 col-mb-4">
+                                <!-- Single Courses Start -->
+                                <div class="single-courses">
+                                    <div class="courses-images">
+                                        <a href="{% url 'courses:chi-tiet-khoa-hoc' course.slug %}"><img src="/media/{{ course.image }}" alt="Courses"></a>
+                                    </div>
+                                    <div class="courses-content">
+                                        <div class="courses-author">
+                                            <div class="tag">
+                                                <a href="#">{{ course.subject }}</a>
+                                            </div>
+                                        </div>
+                                        <h4 class="title text-center"><a href="{% url 'courses:chi-tiet-khoa-hoc' course.slug %}">{{ course.title }}</a></h4>
+                                        <div class="courses-meta">
+                                            <span> <i class="icofont-clock-time"></i> ~ 30 phút/video</span>
+                                            <span> <i class="icofont-read-book"></i> {{course.duration}} Video bài học </span>
+                                        </div>
+                                        <div class="courses-price-review">
+                                            <div class="courses-price">
+                                                <span class="sale-parice">{% load humanize %}{{course.tuitionfee|floatformat:0|intcomma}} VNĐ</span>
+                                                <span class="old-parice">{% load humanize %}{{course.tuitionfee_ori|floatformat:0|intcomma}} VNĐ</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Single Courses End -->
+                            </div>
+                        {% endif %}
+                    {% endfor %} 
+                    </div>
+                </div> 
+                {% endfor %}
+                <!-- All Courses tab content End -->
+
+                <!-- All Courses BUtton Start -->
+                <div class="courses-btn text-center">
+                    
+                </div>
+                <!-- All Courses BUtton End -->
+
+            </div>
+        </div>
+        <!-- All Courses End -->
+
+{% endblock %}
